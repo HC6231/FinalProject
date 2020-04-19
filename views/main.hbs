@@ -1,0 +1,70 @@
+<header>
+    <link rel="stylesheet" href="../public/css/style.css">
+</header>
+
+<div class='bg'>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>WeeMoo</h3>
+                <strong>WM</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/main">
+                        <i class="glyphicon glyphicon-home"></i>
+                        <span>home</span>
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-book-open"></i>
+                        <span>About</span>
+                    </a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="glyphicon glyphicon-duplicate"></i>
+                        My Record
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li><a href="#">Page 1</a></li>
+                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">Page 3</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="glyphicon glyphicon-link"></i>
+                        My Info
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="btn btn-default" style="font-size: larger;">
+                <i class="glyphicon glyphicon-align-left"></i>
+            </button>
+        </div>
+
+        <!-- Page Content Holder -->
+        <div class="container-fluid">
+            <div id="content">
+                <nav class="navbar navbar-default">
+                    <form>
+                        <h2>MyMoo</h2>
+                        <p id='date' style="font-size:x-large;"></p>
+                        <div id="editor">
+                            <p></p>
+                            <p>Some initial <strong>bold</strong> text</p>
+                            <p><br></p>
+                        </div>
+                        <button class='btn btn-primary' id="savebtn" type='submit' style="left: unset; font-size:large">
+                            Save
+                        </button>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

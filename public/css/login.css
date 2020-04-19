@@ -1,0 +1,112 @@
+@import "https://fonts.googleapis.com/css?family=Quicksand&display=swap";
+
+
+body {
+    background: #fafafa;
+}
+
+.bg{
+  /* The image used */
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).jpg");
+  position: fixed;
+  /* Half height */
+  height: 100%;
+  width: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-signin {
+  border: 7rem;
+  border-radius: 6rem;
+  background: rgba(11, 65, 94, 0.338);
+  box-shadow: 0 1rem 1rem 1rem rgba(0, 0, 0, 0.338);
+}
+
+
+.card-signin .card-title {
+  margin: auto;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  font-size: 4rem;
+}
+
+.card-signin .card-body {
+  padding: 5rem;
+}
+
+.form-signin {
+  width: 100%;
+}
+
+.form-signin .btn {
+  font-size: 100%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: normal;
+  padding: 2rem;
+  transition: all 0.2s;
+}
+
+.btn-reg {
+  font-size: 100%;
+  border-radius: 5rem;
+  letter-spacing: .1rem;
+  font-weight: normal;
+  padding: 10rem;
+  transition: all 0.1s;
+}
+
+.form-label-group {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.form-label-group input {
+  height: 2rem;
+  height: 4rem;
+  border-radius: 2rem;
+}
+
+
+.form-label-group>label {
+  position: absolute;
+  top: 20px;
+  left: 11px;
+  width: 100%;
+  margin-bottom: 0;
+  line-height: 0;
+  color: #32363a;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: all .1s ease-out;
+  font-family:'Quicksand', sans-serif; 
+}
+
+.form-label-group input::placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+  padding-bottom: calc(var(--input-padding-y) / 3);
+}
+
+.form-label-group input:not(:placeholder-shown)~label {
+  padding-top: 10px;
+  padding-bottom: 100px;
+  font-size: xx-large;
+  color: rgba(222, 18, 18, 0);
+}
+
+
+#message{
+  text-align: center;
+  font-size: 23px;
+  color: rgb(126, 17, 39);
+}
+
+
+  
