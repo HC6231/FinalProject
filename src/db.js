@@ -11,7 +11,7 @@ const loginSchema = new mongoose.Schema({
 const User = mongoose.model('userLogin', loginSchema);
 
 
-mongoose.connect('mongodb+srv://hcAdmin:chrssgtxdys@ds227555.mlab.com:27555/heroku_5tf98rhr',{ useUnifiedTopology: true, useNewUrlParser: true})
+mongoose.connect('mongodb+srv://hcAdmin:chrssgtxdys@hc6231proj-zzwij.mongodb.net/WeeMoo?retryWrites=true&w=majority',{ useUnifiedTopology: true, useNewUrlParser: true})
 
 module.exports = User;
 
