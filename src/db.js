@@ -9,9 +9,9 @@ const loginSchema = new mongoose.Schema({
 
 
 const User = mongoose.model('userLogin', loginSchema);
+const uri = 'mongodb+srv://hcAdmin:chrssgtxdys@hc6231proj-zzwij.mongodb.net/WeeMoo?retryWrites=true&w=majority'
 
-
-mongoose.connect('mongodb+srv://hcAdmin:chrssgtxdys@hc6231proj-zzwij.mongodb.net/WeeMoo?retryWrites=true&w=majority',{ useUnifiedTopology: true, useNewUrlParser: true})
+mongoose.connect(uri,{ useUnifiedTopology: true, useNewUrlParser: true})
 
 module.exports = User;
 
