@@ -82,9 +82,11 @@ app.post('/register', function (req, res) {
     })
 });
 
+
 app.get('/main', checkAuthenticated, function (req, res) {
     res.render('main');
 });
+
 
 app.post('/main', async function (req, res) {
     const today = getToday();
@@ -117,6 +119,7 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
+//helper function
 function getToday() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
@@ -125,6 +128,7 @@ function getToday() {
     today = mm + '/' + dd + '/' + yyyy;
     return today;
 }
+
 
 function checkExist(query, cb) {
     loginInfo.findOne({ email: query }, function (err, user) {
@@ -137,6 +141,7 @@ function checkExist(query, cb) {
     })
 }
 
+
 async function saveRegInfo(email, password) {
     const insert = new loginInfo({
         email: email,
@@ -146,6 +151,7 @@ async function saveRegInfo(email, password) {
         if (err) (console.log(err));
     })
 }
+
 
 async function saveDiary(date, subject, context, user) {
     try {
@@ -163,6 +169,7 @@ async function saveDiary(date, subject, context, user) {
     }
 }
 
+
 function checkAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -170,7 +177,7 @@ function checkAuthenticated(req, res, next) {
     res.redirect('/');
 }
 
-
+//START THE SERVER
 let port = process.env.PORT;
 if (port == null || port == "") {
     port = 3000;
