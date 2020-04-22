@@ -17,7 +17,7 @@ require('./passport_config')(passport);
 const mongoose = require('mongoose');
 const loginInfo = mongoose.model('userLogin');
 const userDiary = mongoose.model('Diary');
-
+mongoose.set('useFindAndModify', false);
 //bycrypt setup
 const bcrypt = require('bcrypt');
 
@@ -77,7 +77,7 @@ app.post('/register',function(req,res){
     })
 });
 
-app.get('/main',function(req,res){
+app.get('/main',checkAuthenticated,function(req,res){
     res.render('main');
 });
 
@@ -91,9 +91,12 @@ app.post('/main',async function(req,res){
     //push saved diary into user information via objID
     const savedDiary = await saveDiary(inputObj.date, inputObj.subject, inputObj.context, user._id);
     const updatedUser = await loginInfo.findOneAndUpdate({_id: savedDiary.user},  {$push: { diary: savedDiary._id}});
+    req.flash('info','User Existed');
+    res.redirect('/main');
 });
 
-app.get('/record', async function(req,res){
+
+app.get('/record', checkAuthenticated ,async function(req,res){
     const userInfo =  await loginInfo.find();
     console.log(userInfo)
     const record = userInfo[0].diary;
@@ -102,6 +105,7 @@ app.get('/record', async function(req,res){
     console.log({allRecord});
     res.render('record',{allRecord});
 })
+
 
 app.get('/logout', function(req, res){
     req.logout();
@@ -148,11 +152,19 @@ async function saveDiary(date, subject, context, user){
         })
         const saved = await insertDiary.save();
         return saved;
-    }catch(e){
-        console.log(e);
-        return e;
+    }catch(err){
+        console.log(err);
+        res.status(500).send(err)
     }
 }
+
+function checkAuthenticated(req,res,next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/');
+}
+
 
 let port = process.env.PORT;
 if(port == null || port == ""){
