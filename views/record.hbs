@@ -31,7 +31,6 @@
                         <i class="glyphicon glyphicon-log-out"></i>
                         Logout
                     </a>
-
                     {{!-- <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li><a href="#">Page 1</a></li>
                         <li><a href="#">Page 2</a></li>
@@ -53,26 +52,15 @@
                 <i class="glyphicon glyphicon-align-left"></i>
             </button>
         </div>
-
+            
         <!-- Page Content Holder -->
         <div class="container-fluid">
             <div id="content">
-                <nav class="textBox">
-                    <form method="POST" id = "identifier">
-                        <input type="Text" placeholder="Enter Today's Subject" id = "Subject" name="subject">
-                        
-                        <p id='date' style="font-size:large"></p>
-                    
-                        <div id="editor">
-                            
-                        </div>
-                            <p><br></p>
-                            <textarea name = "context" style="display:none;" id="hiddenArea"></textarea>
-                            <input type="submit" value="Save" class='btn btn-primary' id="savebtn"/>
-                    </form>
-                </nav>
+                {{#each allRecord as |a|}}
+                    <h3>a.date</h3>
+                    <h3>a.context</h3>
+                {{/each}}
             </div>
         </div>
     </div>
 </div>
-

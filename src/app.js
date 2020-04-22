@@ -7,16 +7,16 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-require('dotenv').config();
 //db setup 
 require('./db')
 
 //passport config
 require('./passport_config')(passport);
 
-
+//import model from DB
 const mongoose = require('mongoose');
 const loginInfo = mongoose.model('userLogin');
+const userDiary = mongoose.model('Diary');
 
 //bycrypt setup
 const bcrypt = require('bcrypt');
@@ -36,7 +36,6 @@ app.use(passport.session());
 app.use(flash());
 
 app.get('/',function(req,res){
-    console.log('Up and running')
     res.render('login');
 })
 
@@ -53,7 +52,7 @@ app.get('/register',function(req,res){
     res.render('register');
 });
 
-// Done
+
 app.post('/register',function(req,res){
     checkExist(req.body.userName, result=>{
         if(result){
@@ -72,7 +71,7 @@ app.post('/register',function(req,res){
             else{
                 const hashedPassword = bcrypt.hashSync(req.body.userPsd,10);
                 saveRegInfo(req.body.userName,hashedPassword);
-                res.redirect('main');
+                res.redirect('/main');
             }
         }
     })
@@ -82,10 +81,41 @@ app.get('/main',function(req,res){
     res.render('main');
 });
 
-
-app.get('/mydiary',function(req,res){
-    res.send('This page is for the main function of the project');
+app.post('/main',async function(req,res){
+    const today = getToday();
+    console.log(today);
+    const userInput = JSON.stringify(req.body);
+    const inputObj = JSON.parse(userInput);
+    inputObj.date = today;
+    const user = req.user;
+    //push saved diary into user information via objID
+    const savedDiary = await saveDiary(inputObj.date, inputObj.subject, inputObj.context, user._id);
+    const updatedUser = await loginInfo.findOneAndUpdate({_id: savedDiary.user},  {$push: { diary: savedDiary._id}});
 });
+
+app.get('/record', async function(req,res){
+    const userInfo =  await loginInfo.find();
+    console.log(userInfo)
+    const record = userInfo[0].diary;
+    const allRecord =  await userDiary.find({_id:{$in:record}});
+    console.log(typeof(allRecord));
+    console.log({allRecord});
+    res.render('record',{allRecord});
+})
+
+app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
+
+function getToday(){
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    let yyyy = today.getFullYear();
+    today = mm + '/' + dd + '/' + yyyy;
+    return today;
+}
 
 function checkExist(query, cb){
     loginInfo.findOne({email: query}, function(err,user){
@@ -108,6 +138,21 @@ async function saveRegInfo(email, password){
     })
 }
 
+async function saveDiary(date, subject, context, user){
+    try{
+        const insertDiary = new userDiary({
+            date: date,
+            subject: subject,
+            context: context,
+            user: user
+        })
+        const saved = await insertDiary.save();
+        return saved;
+    }catch(e){
+        console.log(e);
+        return e;
+    }
+}
 
 let port = process.env.PORT;
 if(port == null || port == ""){
