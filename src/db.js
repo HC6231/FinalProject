@@ -17,9 +17,6 @@ const loginSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('userLogin', loginSchema);
-
-const DBname = prompt("Enter DB username:");
-const DBpsd = prompt("Enter DB password:");
 const uri = 'mongodb+srv://hcAdmin:chrssgtxdys@hc6231proj-zzwij.mongodb.net/WeeMoo?retryWrites=true&w=majority'
 
 mongoose.connect(uri,{ useUnifiedTopology: true, useNewUrlParser: true})
