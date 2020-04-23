@@ -57,15 +57,18 @@
                         {{#each allRecord as |a|}}
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
-                                <h5 class="mb-0">
-                                    <button class="recordCollapseBtn" data-toggle="collapse" data-target={{a.id}} aria-expanded="false" aria-controls="collapseTwo">
-                                        {{a.subject}}           
-                                    </button>
-                                    <label id="recordDate" style="color:#fafafa; text-align:center"> {{a.date}} </label>
-                                    <button type = "submit" class="deleteBtn" data-target={{a.id}}>
-                                        Delete          
-                                    </button>
-                                </h5>
+                                    <h5 class="mb-0">
+                                        <button class="recordCollapseBtn" data-toggle="collapse" data-target={{a.id}} aria-expanded="false" aria-controls="collapseTwo">
+                                            {{a.subject}}           
+                                        </button>
+                                        <label id="recordDate" style="color:#fafafa; text-align:center"> {{a.date}} </label>
+                                        {{!-- <button method="POST" type = "submit" class="deleteBtn" action="/detele-record"data-target={{a.id}}>
+                                            Delete          
+                                        </button> --}}
+                                        <form action="/delete" method="post">
+                                            <button id="deleteBtn" class="far fa-trash-alt" name="recordID" value='{{a._id}}'/>
+                                        </form>
+                                    </h5>
                                 </div>
                                 <div id={{a.subject}} class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body" id = 'collapseContent'>

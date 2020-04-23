@@ -111,7 +111,27 @@ app.get('/record', checkAuthenticated, async function (req, res) {
     console.log(typeof (allRecord));
     console.log({ allRecord });
     res.render('record', { allRecord });
-})
+});
+
+app.post('/delete',async function(req,res){
+    console.log(req.body.recordID);
+    const deleteID = req.body.recordID;
+    userDiary.findOneAndRemove({_id:deleteID},function(err){
+        if(err){
+            console.log(err);
+            return res.status(500).send();
+        }
+        return res.status(200).send();
+    });
+    loginInfo.update({$pull:{'diary':deleteID}},function(err){
+        if(err){
+            console.log(err);
+            return res.status(500).send();
+        }
+        return res.status(200).send();
+    })
+    res.redirect('/record');
+});
 
 
 app.get('/logout', function (req, res) {
