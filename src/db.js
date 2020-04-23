@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 
 const userDiary = new mongoose.Schema({
     date: String,
-    id: String,
     subject: String,
     context: String,
     user: String

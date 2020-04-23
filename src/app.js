@@ -104,12 +104,8 @@ app.post('/main', async function (req, res) {
 
 
 app.get('/record', checkAuthenticated, async function (req, res) {
-    // const userInfo = await loginInfo.find();
-    // console.log("This is the user info");
-    // console.log(req.user.diary);
     const record = req.user.diary;
     const allRecord = await userDiary.find({ _id: { $in: record } });
-    console.log({ allRecord });
     res.render('record', { allRecord });
 });
 
@@ -123,7 +119,7 @@ app.post('/delete',async function(req,res){
         }
         return res.status(200).send();
     });
-    loginInfo.update({$pull:{'diary':deleteID}},function(err){
+    loginInfo.update({$pull:{'diary':ObjectID(deleteID)}},function(err){
         if(err){
             console.log(err);
             return res.status(500).send();
