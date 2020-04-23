@@ -119,7 +119,7 @@ app.post('/delete',async function(req,res){
         }
         return res.status(200).send();
     });
-    loginInfo.update({$pull:{'diary':ObjectID(deleteID)}},function(err){
+    loginInfo.update({$pull:{'diary':deleteID}},function(err){
         if(err){
             console.log(err);
             return res.status(500).send();
