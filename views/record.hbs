@@ -58,7 +58,7 @@
                             <div class="card">
                                 <div class="card-header" id="headingTwo">
                                     <h5 class="mb-0">
-                                        <button class="recordCollapseBtn" data-toggle="collapse" data-target={{a.id}} aria-expanded="false" aria-controls="collapseTwo">
+                                        <button class="recordCollapseBtn" data-toggle="collapse" data-target=#{{a._id}} aria-expanded="false" aria-controls="collapseTwo">
                                             {{a.subject}}           
                                         </button>
                                         <label id="recordDate" style="color:#fafafa; text-align:center"> {{a.date}} </label>
@@ -70,7 +70,7 @@
                                         </form>
                                     </h5>
                                 </div>
-                                <div id={{a.subject}} class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                <div id={{a._id}} class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                         <div class="card-body" id = 'collapseContent'>
                                             {{{a.context}}}
                                         </div>

@@ -177,7 +177,6 @@ async function saveDiary(date, subject, context, user) {
     try {
         const insertDiary = new userDiary({
             date: date,
-            id: `#${subject}`,
             subject: subject,
             context: context,
             user: user
