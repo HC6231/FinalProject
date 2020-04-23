@@ -157,6 +157,7 @@ async function saveDiary(date, subject, context, user) {
     try {
         const insertDiary = new userDiary({
             date: date,
+            id: `#${subject}`,
             subject: subject,
             context: context,
             user: user
@@ -185,4 +186,4 @@ if (port == null || port == "") {
 app.listen(port)
 
 
-//git push heroku master
+//git push heroku master  --> push to Heroku Server

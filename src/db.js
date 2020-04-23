@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const userDiary = new mongoose.Schema({
     date: String,
+    id: String,
     subject: String,
     context: String,
     user: String
@@ -17,11 +18,9 @@ const loginSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model('userLogin', loginSchema);
-const uri = 'mongodb+srv://hcAdmin:chrssgtxdys@hc6231proj-zzwij.mongodb.net/WeeMoo?retryWrites=true&w=majority'
 
-mongoose.connect(uri,{ useUnifiedTopology: true, useNewUrlParser: true})
+
+mongoose.connect('mongodb+srv://hcAdmin:chrssgtxdys@hc6231proj-zzwij.mongodb.net/WeeMoo?retryWrites=true&w=majority',{ useUnifiedTopology: true, useNewUrlParser: true})
 
 module.exports = Diary;
 module.exports = User;
-
-
