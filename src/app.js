@@ -90,7 +90,7 @@ app.get('/main', checkAuthenticated, function (req, res) {
 
 app.post('/main', async function (req, res) {
     const today = getToday();
-    console.log(today);
+    //console.log(today);
     const userInput = JSON.stringify(req.body);
     const inputObj = JSON.parse(userInput);
     inputObj.date = today;
@@ -104,11 +104,11 @@ app.post('/main', async function (req, res) {
 
 
 app.get('/record', checkAuthenticated, async function (req, res) {
-    const userInfo = await loginInfo.find();
-    console.log(userInfo)
-    const record = userInfo[0].diary;
+    // const userInfo = await loginInfo.find();
+    // console.log("This is the user info");
+    // console.log(req.user.diary);
+    const record = req.user.diary;
     const allRecord = await userDiary.find({ _id: { $in: record } });
-    console.log(typeof (allRecord));
     console.log({ allRecord });
     res.render('record', { allRecord });
 });
@@ -205,5 +205,5 @@ if (port == null || port == "") {
 }
 app.listen(port)
 
-// user git add .
+
 //git push heroku master  --> push to Heroku Server
