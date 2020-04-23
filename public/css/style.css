@@ -73,6 +73,17 @@ i, span {
     display: inline-block;
 }
 
+#deleteBtn{
+    margin-right: 5px !important;
+    margin-top: -25px !important;
+    float: right;
+    color: #a50e0e;
+    font-size: 17px;
+    background-color: #fafafa00;
+    border: 0px solid #fafafa;
+    border-radius: 5px;
+}
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
