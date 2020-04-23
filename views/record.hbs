@@ -31,11 +31,6 @@
                         <i class="glyphicon glyphicon-log-out"></i>
                         Logout
                     </a>
-                    {{!-- <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-                    </ul> --}}
                 </li>
                 <li>
                     <a href="#">
@@ -52,27 +47,40 @@
                 <i class="glyphicon glyphicon-align-left"></i>
             </button>
         </div>
-            
+
         <!-- Page Content Holder -->
         <div class="container-fluid">
             <div id="content">
-                <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Subject</th>
-                    </tr>
-                </thead>
-                    {{#each allRecord as |a|}}
-                        <tbody>
-                            <tr>
-                            <td>{{a.date}}</td>
-                            <td>{{{a.subject}}}</td>
-                            </tr>
-                        </tbody>
-                    {{/each}}
-                </table>
+                <div class="textBox">
+                    <h3 style="color:#fafafa; text-align:center">My Record</h3>
+                    <div id="recordCard">
+                        {{#each allRecord as |a|}}
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="recordCollapseBtn" data-toggle="collapse" data-target={{a.id}} aria-expanded="false" aria-controls="collapseTwo">
+                                        {{a.subject}}           
+                                    </button>
+                                    <label id="recordDate" style="color:#fafafa; text-align:center"> {{a.date}} </label>
+                                    <button type = "submit" class="deleteBtn" data-target={{a.id}}>
+                                        Delete          
+                                    </button>
+                                </h5>
+                                </div>
+                                <div id={{a.subject}} class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                        <div class="card-body" id = 'collapseContent'>
+                                            {{{a.context}}}
+                                        </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <a id="addBtn" class = "glyphicon glyphicon-plus-sign" href="/main"></a>
             </div>
         </div>
+        
+        
     </div>
 </div>
