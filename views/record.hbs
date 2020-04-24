@@ -62,20 +62,22 @@
                                             {{a.subject}}           
                                         </button>
                                         <label id="recordDate" style="color:#fafafa; text-align:center"> {{a.date}} </label>
-                                        {{!-- <button method="POST" type = "submit" class="deleteBtn" action="/detele-record"data-target={{a.id}}>
-                                            Delete          
-                                        </button> --}}
                                         <form action="/delete" method="post">
                                             <button id="deleteBtn" class="far fa-trash-alt" name="recordID" value='{{a._id}}'/>
                                         </form>
                                     </h5>
                                 </div>
-                                <div id={{a._id}} class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                        <div class="card-body" id = 'collapseContent'>
-                                            {{{a.context}}}
-                                        </div>
+                                <form action="/update" method="post" id="update">
+                                    <div id={{a._id}} class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                            <textarea id="text" name="text" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px;" style="display: hidden;">{{{a.context}}}</textarea>
+                                            {{!-- <div contenteditable="true" id="text" name="text" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; ">
+                                                {{{a.context}}}
+                                            </div> --}}
+                                            <br>
+                                        <button id="updatebtn" type="submit" class="far fa-edit" name="recordID" value='{{a._id}}'>
+                                    </div>
                                     <hr>
-                                </div>
+                                </form>
                             </div>
                         {{/each}}
                     </div>
@@ -83,7 +85,5 @@
                 <a id="addBtn" class = "glyphicon glyphicon-plus-sign" href="/main"></a>
             </div>
         </div>
-        
-        
     </div>
 </div>

@@ -75,9 +75,9 @@ i, span {
 
 #deleteBtn{
     margin-right: 5px !important;
-    margin-top: -25px !important;
+    margin-top: -23px !important;
     float: right;
-    color: #a50e0e;
+    color: #bd3131;
     font-size: 17px;
     background-color: #fafafa00;
     border: 0px solid #fafafa;
@@ -356,6 +356,32 @@ input[type=text], select {
 }
 
 /* ---------------------------------------------------
+    Customize Updater textarea and button
+----------------------------------------------------- */
+#text{
+    border: 0.3px #e5f0ff solid;
+    border-radius: 5px;
+    background-color: rgba(133, 171, 184, 0.324);
+    width: 60rem;
+    margin-left:6rem;
+}
+
+#updatebtn{
+    font-size: 17px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    display: block;
+    margin-right: 0px;
+    color: cornsilk;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+}
+
+hr{
+    border-top: 0.9px rgba(237, 237, 237, 0.721) solid;
+}
+
+/* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
 .container-fluid{
@@ -372,8 +398,6 @@ input[type=text], select {
     min-height: 100vh;
     transition: all 0.5s;
 }
-
-
 
 
 /* ---------------------------------------------------

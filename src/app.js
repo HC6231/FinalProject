@@ -111,6 +111,7 @@ app.get('/record', checkAuthenticated, async function (req, res) {
 
 app.post('/delete',async function(req,res){
     console.log(req.body.recordID);
+    console.log(req.user._id);
     const deleteID = req.body.recordID;
     userDiary.findOneAndRemove({_id:deleteID},function(err){
         if(err){
@@ -119,7 +120,7 @@ app.post('/delete',async function(req,res){
         }
         return res.status(200).send();
     });
-    loginInfo.update({$pull:{'diary':deleteID}},function(err){
+    loginInfo.updateOne({'_id':req.user._id},{$pull:{'diary':deleteID}},function(err){
         if(err){
             console.log(err);
             return res.status(500).send();
@@ -128,6 +129,20 @@ app.post('/delete',async function(req,res){
     })
     res.redirect('/record');
 });
+
+app.post('/update', async function(req,res){
+    console.log(req.body.recordID);
+    console.log(req.body.text);
+    const updated = req.body.text;
+    userDiary.updateOne({'_id':req.body.recordID},{'context':updated},function(err){
+        if(err){
+            console.log(err);
+            return res.status(500).send();
+        }
+        return res.status(200).send();
+    })
+    res.redirect('/record');
+})
 
 
 app.get('/logout', function (req, res) {
@@ -145,7 +160,7 @@ function getToday() {
     return today;
 }
 
-
+// Higner Order Function, call back
 function checkExist(query, cb) {
     loginInfo.findOne({ email: query }, function (err, user) {
         if (user !== null) {
@@ -174,7 +189,7 @@ async function saveDiary(date, subject, context, user) {
         const insertDiary = new userDiary({
             date: date,
             subject: subject,
-            context: context,
+            context: context.replace(/<[^>]*>?/gm,''),
             user: user
         })
         const saved = await insertDiary.save();
