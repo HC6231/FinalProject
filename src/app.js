@@ -150,6 +150,24 @@ app.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
+app.get('/about',function(req,res){
+    res.render('about');
+})
+
+app.get('/myinfo',checkAuthenticated, async function(req,res){
+    const record = req.user;
+    const created = record.regDate;
+    const today = new Date();
+    const days = Math.floor((((today - created)/(1000*3600))/24));
+    const recordnum = record.diary.length;
+    // console.log(recordnum)
+    const infoOBJ = {duration: days,
+                     num: recordnum};
+    const arrayOBJ = [];
+    arrayOBJ.push(infoOBJ)
+    res.render('myInfo',{arrayOBJ});
+});
+
 //helper function
 function getToday() {
     let today = new Date();
@@ -174,10 +192,12 @@ function checkExist(query, cb) {
 
 
 async function saveRegInfo(email, password) {
+    const isodate = new Date()
     const insert = new loginInfo({
         email: email,
-        password: password
-    })
+        password: password,
+        regDate: isodate
+    });
     insert.save(function (err) {
         if (err) (console.log(err));
     })
@@ -191,7 +211,7 @@ async function saveDiary(date, subject, context, user) {
             subject: subject,
             context: context.replace(/<[^>]*>?/gm,''),
             user: user
-        })
+        });
         const saved = await insertDiary.save();
         return saved;
     } catch (err) {
@@ -213,7 +233,7 @@ let port = process.env.PORT;
 if (port == null || port == "") {
     port = 3000;
 }
-app.listen(port)
+app.listen(port);
 
 
 //git push heroku master  --> push to Heroku Server

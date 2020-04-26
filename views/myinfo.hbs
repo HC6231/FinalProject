@@ -1,0 +1,63 @@
+<header>
+    <link rel="stylesheet" href="../public/css/style.css">
+</header>
+
+<div class='bg'>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>WeeMoo</h3>
+                <strong>WM</strong>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="/main">
+                        <i class="glyphicon glyphicon-home"></i>
+                        <span>home</span>
+                    </a>
+                    <a href="/record">
+                        <i class="glyphicon glyphicon-duplicate"></i>
+                        My Record
+                    </a>
+                    <a href="/myinfo">
+                        <i class="glyphicon glyphicon-link"></i>
+                        My Info
+                    </a>
+                    <a href="/about">
+                        <i class="fas fa-book-open"></i>
+                        <span>About</span>
+                    </a>
+                    <a href="/logout">
+                        <i class="glyphicon glyphicon-log-out"></i>
+                        Logout
+                    </a>
+                    
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="navbar-header">
+            <button type="button" id="sidebarCollapse" class="btn btn-default" style="font-size: larger;">
+                <i class="glyphicon glyphicon-align-left"></i>
+            </button>
+        </div>
+
+        <!-- Page Content Holder -->
+        <div class="container-fluid">
+            <div id="content">
+                <div class="textBox">
+                    {{#each arrayOBJ as |o|}}
+                        <h4 style="color: black;text-align: center">You've been with WeeMoo for {{o.duration}} days<br></h4>
+                        <h4 style="color: black;text-align: center;">You have {{o.num}} diaries here!</h4>
+                        <h4 style="color: black;text-align: center;">Keep on writing!</h4>
+                    {{/each}}
+                </div>
+                <a id="addBtn" class = "glyphicon glyphicon-plus-sign" href="/main"></a>
+            </div>
+        </div>
+    </div>
+</div>
+

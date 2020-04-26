@@ -11,6 +11,9 @@ const userDiary = new mongoose.Schema({
 const Diary = mongoose.model('Diary', userDiary);
 
 const loginSchema = new mongoose.Schema({
+    name: String,
+    regDate: Date,
+    recordNum: Number,
     email:String, 
     password:String,
     diary: [{type:mongoose.Schema.Types.ObjectId, "ref":Diary}]

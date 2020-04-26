@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {{!-- Compatible with Edge --}}
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>WeeMoo - A Simple Daily Diary Tool</title>
@@ -30,6 +31,7 @@
 
   <!-- js code for side bar -->
   <script type="text/javascript">
+  //toggle side bar when clicked
     $(document).ready(function () {
       $('#sidebarCollapse').on('click', function () {
         $('#sidebar').toggleClass('active');
@@ -66,7 +68,7 @@
         theme: 'snow'
       });
 
-      // customize the color tool handler
+      // customize the tool handler
       quillEditor.getModule('toolbar').addHandler('color', (value) => {
 
         // if the user clicked the custom-color option, show a prompt window to get the color
@@ -77,6 +79,7 @@
       });
   </script>
   <script>
+    // Higner Order Function --> update the hidden textarea with Quill input. Avoid using Delta data form
     quillEditor.on('text-change', function (delta, oldDelta, source) {
       $('#hiddenArea').val(quillEditor.container.firstChild.innerHTML);
     });
