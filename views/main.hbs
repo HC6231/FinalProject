@@ -17,31 +17,21 @@
                         <i class="glyphicon glyphicon-home"></i>
                         <span>home</span>
                     </a>
-                    <a href="#">
-                        <i class="fas fa-book-open"></i>
-                        <span>About</span>
-                    </a>
-
                     <a href="/record">
                         <i class="glyphicon glyphicon-duplicate"></i>
                         My Record
                     </a>
-
+                    <a href="/myinfo">
+                        <i class="glyphicon glyphicon-link"></i>
+                        My Info
+                    </a>
+                     <a href="/about">
+                        <i class="fas fa-book-open"></i>
+                        <span>About</span>
+                    </a>
                     <a href="/logout">
                         <i class="glyphicon glyphicon-log-out"></i>
                         Logout
-                    </a>
-
-                    {{!-- <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                        <li><a href="#">Page 3</a></li>
-                    </ul> --}}
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-link"></i>
-                        My Info
                     </a>
                 </li>
             </ul>
@@ -57,7 +47,7 @@
         <!-- Page Content Holder -->
         <div class="container-fluid">
             <div id="content">
-                <nav class="textBox">
+                <div class="textBox">
                     <form method="POST" id = "identifier">
                         <input type="Text" placeholder="Enter Today's Subject" id = "Subject" name="subject">
                         
@@ -70,7 +60,7 @@
                             <textarea name = "context" style="display:none;" id="hiddenArea"></textarea>
                             <input type="submit" value="Save" class='btn btn-primary' id="savebtn"/>
                     </form>
-                </nav>
+                </div>
             </div>
         </div>
     </div>
