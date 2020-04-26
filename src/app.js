@@ -165,7 +165,7 @@ app.get('/myinfo',checkAuthenticated, async function(req,res){
                      num: recordnum};
     const arrayOBJ = [];
     arrayOBJ.push(infoOBJ)
-    res.render('myInfo',{arrayOBJ});
+    res.render('myinfo',{arrayOBJ});
 });
 
 //helper function
