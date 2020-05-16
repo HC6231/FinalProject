@@ -21,8 +21,8 @@ const loginSchema = new mongoose.Schema({
 
 const User = mongoose.model('userLogin', loginSchema);
 
-
-mongoose.connect('mongodb+srv://hcAdmin:chrssgtxdys@hc6231proj-zzwij.mongodb.net/WeeMoo?retryWrites=true&w=majority',{ useUnifiedTopology: true, useNewUrlParser: true})
+URI = "mongodb+srv://hcAdmin:chrssgtxdys@hc6231proj-zzwij.mongodb.net/WeeMoo?retryWrites=true&w=majority"
+mongoose.connect(URI,{ useUnifiedTopology: true, useNewUrlParser: true})
 
 module.exports = Diary;
 module.exports = User;
